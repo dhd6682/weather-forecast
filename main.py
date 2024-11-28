@@ -42,7 +42,9 @@ def parse_weather(data):
 
 @app.get("/weather/{city}")
 def read_weather(city: str):
-    api_key = "c26b618c96d7fa98d27a60189767bcbd"  # 여기 API 키를 입력하세요
+    api_key = os.getenv("API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="API key not found")  # 여기 API 키를 입력하세요  
     data = get_weather_data(api_key, city)
     today_weather, tomorrow_weather = parse_weather(data)
 
