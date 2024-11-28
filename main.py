@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 import requests
 from datetime import datetime, timedelta
 from fastapi.responses import JSONResponse
+import os
 
 app = FastAPI()
 
@@ -65,7 +66,9 @@ def read_weather(city: str):
 
 @app.post("/weather/{city}")
 def read_weather(city: str):
-    api_key = "c26b618c96d7fa98d27a60189767bcbd"  # 여기 API 키를 입력하세요
+    api_key = os.getenv("API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="API key not found")  # 여기 API 키를 입력하세요
     data = get_weather_data(api_key, city)
     today_weather, tomorrow_weather = parse_weather(data)
 
