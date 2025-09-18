@@ -56,6 +56,8 @@ Weather Forecast AI API는 도시 이름을 입력받아 해당 도시의 오늘
    ```
    API_KEY=your_openweathermap_api_key
    ```
+   
+   **중요**: `.env` 파일은 Git에 업로드되지 않습니다. 각자 OpenWeatherMap에서 API 키를 발급받아 설정해야 합니다.
 
 4. **서버 실행**:
    ```bash

@@ -6,8 +6,12 @@ import os
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "Weather API is running! Use /weather/{city} to get weather data"}
+
 def get_weather_data(api_key, city):
-    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&units=metric&appid={api_key}" # 기상청 날씨 api 가져오기
+    url = f"http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={api_key}" # 기상청 날씨 api 가져오기
     try:
         response = requests.get(url)
         response.raise_for_status()  # HTTP 에러 발생 시 예외 처리
@@ -44,7 +48,19 @@ def parse_weather(data):
 def read_weather(city: str):
     api_key = os.getenv("API_KEY")
     if not api_key:
+        # .env 파일에서 직접 읽기 시도
+        try:
+            with open('.env', 'r') as f:
+                for line in f:
+                    if line.startswith('API_KEY='):
+                        api_key = line.split('=', 1)[1].strip()
+                        break
+        except:
+            pass
+    
+    if not api_key:
         raise HTTPException(status_code=500, detail="API key not found")  # 여기 API 키를 입력하세요  
+    
     data = get_weather_data(api_key, city)
     today_weather, tomorrow_weather = parse_weather(data)
 
@@ -67,8 +83,19 @@ def read_weather(city: str):
     })
 
 @app.post("/weather/{city}")
-def read_weather(city: str):
+def read_weather_post(city: str):
     api_key = os.getenv("API_KEY")
+    if not api_key:
+        # .env 파일에서 직접 읽기 시도
+        try:
+            with open('.env', 'r') as f:
+                for line in f:
+                    if line.startswith('API_KEY='):
+                        api_key = line.split('=', 1)[1].strip()
+                        break
+        except:
+            pass
+    
     if not api_key:
         raise HTTPException(status_code=500, detail="API key not found")  # 여기 API 키를 입력하세요
     data = get_weather_data(api_key, city)
