@@ -42,8 +42,8 @@ Weather Forecast AI API는 도시 이름을 입력받아 해당 도시의 오늘
 
 1. **프로젝트 클론**:
    ```bash
-   git clone https://github.com/dhd6682/weather-forecast-ai.git
-   cd weather-forecast-ai
+   git clone https://github.com/dhd6682/weather-forecast.git
+   cd weather-forecast
    ```
 
 2. **필요한 라이브러리 설치**:
