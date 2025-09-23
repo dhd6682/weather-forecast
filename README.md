@@ -100,7 +100,7 @@ Weather Forecast AI API는 도시 이름을 입력받아 해당 도시의 오늘
 
 ## 환경 변수 설정
 
-이 프로젝트에서는 OpenWeatherMap API 키와 같은 중요한 정보를 `.env` 파일을 통해 관리합니다. 이는 API 키와 같은 민감한 정보가 GitHub에 노출되지 않도록 보호해줍니다.
+이 프로젝트에서는 OpenWeatherMap API 키와 같은 중요한 정보를 `.env` 파일을 통해 관리합니다. API 키와 같은 민감한 정보가 GitHub에 노출되지 않도록 보호해줍니다.
 
 ### .env 파일 예시
 ```
