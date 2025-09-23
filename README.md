@@ -86,7 +86,7 @@ Weather Forecast AI API는 도시 이름을 입력받아 해당 도시의 오늘
       "wind_speed": 5.2
     },
     "tomorrow": {
-      "temperature": 24.3,
+      "temperature": 23.4,
       "weather": "Clouds",
       "humidity": 55,
       "wind_speed": 4.8
